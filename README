@@ -28,4 +28,5 @@ zero (case in which the packet will be ignored, for example control messages). I
 than 1 second, then that traffic is considered bruteforce attack, thus reported with 1.
 
 ## Bibliography
-Bitdefender challenge - my first antivirus
+
+Bitdefender programming challenge - my first antivirus
