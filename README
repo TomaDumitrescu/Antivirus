@@ -3,7 +3,7 @@
 ## Description
 
 The Python application uses euristics for determining whether input urls are malicious (75.36% correct
-classification rate) or if the captured traffic is suspicious.
+classification rate) or if the captured traffic is suspicious (71.9% rate).
 
 ## Implementation
 
@@ -20,6 +20,12 @@ in the U's domain name or if the difference of characters between words is <= 2,
 the 2-transformation of the popular site will lead to normal words. After that, the url is checked to not
 contain ip-like regexes, and to not have the domain name formed only by consonants or with high frequencies
 of unusual letters like j, q, x, y, z, w together.
+
+Network Traffic Analyser:
+
+After parsing the CSV file and extracted the values for flow_payload and flow_duration, I checked if payload is
+zero (case in which the packet will be ignored, for example control messages). If the flow_duration is greater
+than 1 second, then that traffic is considered bruteforce attack, thus reported with 1.
 
 ## Bibliography
 Bitdefender challenge - my first antivirus

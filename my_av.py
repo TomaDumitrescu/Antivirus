@@ -118,12 +118,30 @@ with open('data/urls/urls.in', 'r') as urls_in, open('urls-predictions.out', 'w'
 
 # Traffic analyser
 def flow_duration_payload_test(traffic):
+    data = traffic.split(',')
+    flow_payload = data[len(data) - 1]
+    
+    if flow_payload == '0.0':
+        return 0
+
+    flow_duration = data[4].split(' ')
+    days = flow_duration[0]
+    daytime = flow_duration[2].split(':')
+    hours = daytime[0]
+    minutes = daytime[1]
+    seconds = daytime[2]
+    
+    if (days != "0" or hours != "00" or minutes != "00" or seconds[0] != '0' or
+        (seconds[1] != '0' and seconds[1] != '1') or (seconds[1] == "1" and len(seconds) >= 3)):
+        return 1
+    
     return 0
 
 def traffic_check(traffic):
     return flow_duration_payload_test(traffic)
 
 with open('data/traffic/traffic.in', 'r') as traffic_in, open('traffic-predictions.out', 'w') as traffic_out:
-    for line in traffic_in:
+    lines = traffic_in.readlines()[1:]
+    for line in lines:
         traffic = line.strip()
         traffic_out.write(f"{traffic_check(traffic)}\n")
