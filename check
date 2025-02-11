@@ -7,7 +7,7 @@ from datetime import timedelta
 import sys
 
 if __name__ == '__main__':
-    language = None
+    language = 'py'
     if len(sys.argv) > 1:
         if len(sys.argv) != 3 or sys.argv[1] != '-l' or sys.argv[2] not in ['c', 'py']:
             print("""
@@ -22,7 +22,7 @@ if __name__ == '__main__':
             ./check -l py
             """)
             sys.exit(-1)
-        language = sys.argv[2]
+        language = 'py'
 
     ret, seconds = run_and_measure(lambda: checker_run(language))
     log('Total execution time: {}'.format(seconds))

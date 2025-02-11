@@ -1,0 +1,25 @@
+## Copyright 2023 ~ Toma-Ioan Dumitrescu
+
+## Description
+
+The Python application uses euristics for determining whether input urls are malicious (75.36% correct
+classification rate) or if the captured traffic is suspicious.
+
+## Implementation
+
+URL Analyser:
+
+The file is read line by line, and for each url U, check if if is malicious or not. Firstly, each domain name
+from the infected urls database is compared with U, and if there is a match, then print 1. Secondly, the url
+will be tested against some keywords like ".exe" or ".sh", without interfering with normal words like (exe ->
+lexeme). Then, the last test is the one based on regular expressions: the rapport of numbers over the length
+of the domain name should not exceed 12% (I chose only the domain name to avoid matching with the query 
+parameters of the site). Then, I created a mini-database of the most popular sites that are used to generate
+phishing links (like shellphish script tool), and I verified if the popular site name is somehow included
+in the U's domain name or if the difference of characters between words is <= 2, considering the cases when
+the 2-transformation of the popular site will lead to normal words. After that, the url is checked to not
+contain ip-like regexes, and to not have the domain name formed only by consonants or with high frequencies
+of unusual letters like j, q, x, y, z, w together.
+
+## Bibliography
+Bitdefender challenge - my first antivirus
